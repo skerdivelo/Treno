@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -8,8 +7,13 @@ public class Main {
     public static void main(String[] args) {
         Treno t = new Treno();
         JFrame frame = new JFrame("Treno");
+        try {
+            UIManager.setLookAndFeel("com.apple.laf.AquaLookAndFeel");
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 300);
+        frame.setSize(500, 700);
         frame.setLocationRelativeTo(null);
         frame.setLayout(new BorderLayout());
         JPanel panel = new JPanel();
@@ -33,10 +37,17 @@ public class Main {
         panel.add(button1);
         panel.add(button2);
         panel.add(button3);
-        frame.add(panel, BorderLayout.CENTER);
-        JLabel label2 = new JLabel("Progetto realizzato da: Skerdi Velo, Tafa Kevin, Davoz Gamer Treni S.p.A.");
-        frame.add(label2, BorderLayout.SOUTH);
+        //add image Thomas.jpg to the same panel as the buttons
+        ImageIcon image = new ImageIcon("image.png");
+        JLabel imageLabel = new JLabel(image);
+        //make the angles of the image a little bit round do not use createLineBorder
+        
+        panel.add(imageLabel);
 
+        frame.add(panel, BorderLayout.CENTER);
+        JLabel label2 = new JLabel("Progetto realizzato da: Skerdi Velo, Kevin, Davide Rossini Treni S.p.A.");
+/*         frame.add(label2, BorderLayout.SOUTH);
+ */        
         frame.setVisible(true);
         button1.addActionListener(new ActionListener() {
             @Override
@@ -54,6 +65,7 @@ public class Main {
                 t.aggiungiVagone(v);
             }
         });
+
         button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -69,10 +81,23 @@ public class Main {
                 t.aggiungiVagone(v2);
             }
         });
+        frame.add(label2, BorderLayout.SOUTH);
+        JLabel label3 = new JLabel();
+        label3.setLocation(0, -20);
+        label3.setSize(500, 700);
+        label3.setFont(new Font("Arial", Font.PLAIN, 20));
+        label3.setForeground(Color.BLACK);
         button3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, t.toString());
+                label2.setText("");
+                label3.setText(t.toString());
+                //vai a capo quando raggiungi il limite del frame
+                label3.setText("<html>" + label3.getText() + "</html>");
+                //aumenta l'height del frame ogni volta che va a capo
+                frame.setSize(500, 700 + label3.getPreferredSize().height);
+                frame.add(label3, BorderLayout.SOUTH);
+                frame.setVisible(true);
             }
         });
         frame.setVisible(true);
