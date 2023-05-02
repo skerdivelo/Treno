@@ -66,4 +66,11 @@ public abstract class Vagone {
     public void setAnnoCostruzione(int annoCostruzione) {
         this.annoCostruzione = annoCostruzione;
     }
+    
+    //toString
+    @Override
+    public String toString() {
+        return "Vagone [annoCostruzione=" + annoCostruzione + ", aziendaCostruttrice=" + aziendaCostruttrice
+                + ", codice=" + codice + ", pesoVuoto=" + pesoVuoto + "]";
+    }
 }
