@@ -1,8 +1,3 @@
-/*Per i vagoni passeggeri si devono inoltre memorizzare 
-.classe;
-• numero di posti disponibili;
-• numero di posti occupati: */
-
 public class VagonePasseggero extends Vagone {
     private String classe;
     private int postiDisponibili;
