@@ -18,4 +18,10 @@ public void aggiungiVagone(Vagone vagone) {
         }
         return pesoTotale;
     }
+    
+    //toString
+    @Override
+    public String toString() {
+        return "Treno [vagoni=" + vagoni + "]";
+    }
 }
