@@ -1,7 +1,3 @@
-/*per i vagoni merci si devono memorizzare:
-• volume di carico;
-• peso massimo di carico;
-• peso effettivo di carico. */
 public class VagoneMerce extends Vagone {
     private double volumeCarico;
     private double pesoMaxCarico;
@@ -41,13 +37,5 @@ public class VagoneMerce extends Vagone {
 
     public void setPesoEffettivoCarico(double pesoEffettivoCarico) {
         this.pesoEffettivoCarico = pesoEffettivoCarico;
-    }
-    
-    //toString
-    @Override
-    public String toString() {
-        return "VagoneMerce [volumeCarico=" + volumeCarico + ", pesoMaxCarico=" + pesoMaxCarico
-                + ", pesoEffettivoCarico=" + pesoEffettivoCarico + ", codice=" + codice + ", pesoVuoto=" + pesoVuoto
-                + ", aziendaCostruttrice=" + aziendaCostruttrice + ", annoCostruzione=" + annoCostruzione + "]";
     }
 }
