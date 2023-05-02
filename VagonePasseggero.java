@@ -46,4 +46,12 @@ public class VagonePasseggero extends Vagone {
     public void setPostiOccupati(int postiOccupati) {
         this.postiOccupati = postiOccupati;
     }
+    
+    //toString
+    @Override
+    public String toString() {
+        return "VagonePasseggero [classe=" + classe + ", postiDisponibili=" + postiDisponibili + ", postiOccupati="
+                + postiOccupati + ", codice=" + codice + ", pesoVuoto=" + pesoVuoto + ", aziendaCostruttrice="
+                + aziendaCostruttrice + ", annoCostruzione=" + annoCostruzione + "]";
+    }
 }
