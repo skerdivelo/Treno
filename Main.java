@@ -31,12 +31,18 @@ public class Main {
         JButton button1 = new JButton("Vagone Passeggeri");
         JButton button2 = new JButton("Vagone Merci");
         JButton button3 = new JButton("Stampa Treno");
+        JButton button4 = new JButton("Rimuovi Vagone");
+        JButton button5 = new JButton("Esci");
         button1.setPreferredSize(new Dimension(200, 50));
         button2.setPreferredSize(new Dimension(200, 50));
         button3.setPreferredSize(new Dimension(200, 50));
+        button4.setPreferredSize(new Dimension(200, 50));
+        button5.setPreferredSize(new Dimension(200, 50));
         panel.add(button1);
         panel.add(button2);
         panel.add(button3);
+        panel.add(button4);
+        panel.add(button5);
         //add image Thomas.jpg to the same panel as the buttons
         ImageIcon image = new ImageIcon("image.png");
         JLabel imageLabel = new JLabel(image);
@@ -81,23 +87,41 @@ public class Main {
                 t.aggiungiVagone(v2);
             }
         });
-        frame.add(label2, BorderLayout.SOUTH);
-        JLabel label3 = new JLabel();
-        label3.setLocation(0, -20);
-        label3.setSize(500, 700);
-        label3.setFont(new Font("Arial", Font.PLAIN, 20));
-        label3.setForeground(Color.BLACK);
+        //print the train in another window
         button3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                label2.setText("");
-                label3.setText(t.toString());
-                //vai a capo quando raggiungi il limite del frame
-                label3.setText("<html>" + label3.getText() + "</html>");
-                //aumenta l'height del frame ogni volta che va a capo
-                frame.setSize(500, 700 + label3.getPreferredSize().height);
-                frame.add(label3, BorderLayout.SOUTH);
-                frame.setVisible(true);
+                //print the train and add this below Skerdi Velo, Kevin Tafa, Davide Rossini Treni S.p.A.
+                JFrame frame2 = new JFrame("Treno");
+                frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame2.setSize(500, 700);
+                frame2.setLocationRelativeTo(null);
+                frame2.setLayout(new BorderLayout());
+                JPanel panel2 = new JPanel();
+                panel2.setLayout(new FlowLayout());
+                JLabel label3 = new JLabel("Treno");
+                label3.setFont(new Font("Arial", Font.PLAIN, 30));
+                frame2.add(label3, BorderLayout.CENTER);
+                JLabel label4 = new JLabel(t.toString());
+                label4.setFont(new Font("Arial", Font.PLAIN, 20));
+                panel2.add(label4);
+                frame2.add(panel2, BorderLayout.CENTER);
+                JLabel label5 = new JLabel("Progetto realizzato da: Skerdi Velo, Kevin Tafa, Davide Rossini Treni S.p.A.");
+                frame2.add(label5, BorderLayout.SOUTH);
+                frame2.setVisible(true);
+            }
+        });
+        button4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String codice = JOptionPane.showInputDialog("Inserisci codice");
+                t.rimuoviVagone(codice);
+            }
+        });
+        button5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
             }
         });
         frame.setVisible(true);
