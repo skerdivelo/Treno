@@ -127,8 +127,12 @@ public class Main {
         button4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String codice = JOptionPane.showInputDialog("Inserisci codice");
-                t.rimuoviVagone(codice);
+                if(t.getNumeroVagoni() == 0){
+                    JOptionPane.showMessageDialog(null, "Il treno è vuoto");
+                }else{
+                    String codice = JOptionPane.showInputDialog("Inserisci codice");
+                    t.rimuoviVagone(codice);
+                }
             }
         });
         button5.addActionListener(new ActionListener() {
