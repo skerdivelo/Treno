@@ -42,6 +42,6 @@ public class VagoneMerci extends Vagone {
     //toString
     @Override
     public String toString() {
-        return " VagoneMerci: Il volume del Carico è: " + volumeCarico + "\nIl peso massimo del Carico è:" + pesoMaxCarico + "\nIl peso effettivo del Carico è: " + pesoEffettivoCarico + "\nIl codice=" + codice + "\nIl peso Vuoto=" + pesoVuoto + "\nL'azienda Costruttrice=" + aziendaCostruttrice + "\nL'anno di Costruzione=" + annoCostruzione+"\n-----------------------------------\n";
+        return " VagoneMerci: Il volume del Carico è: " + volumeCarico + "\nIl peso massimo del Carico è:" + pesoMaxCarico + "\nIl peso effettivo del Carico è: " + pesoEffettivoCarico + "\nIl codice=" + codice + "\nIl peso Vuoto=" + pesoVuoto + "\nL'azienda Costruttrice=" + aziendaCostruttrice + "\nL'anno di Costruzione=" + annoCostruzione+"\n";
     }
 }

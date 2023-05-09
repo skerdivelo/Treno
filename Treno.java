@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
+
 public class Treno {
 private ArrayList<Vagone> vagoni = new ArrayList<>();
 
@@ -28,13 +30,14 @@ public void rimuoviVagone(String codice) {
     }
 
     //toString
-    @Override
-    public String toString() {
-        String s = "";
-        //use the substring to remove the square brackets from the string and create an output like this: "Il treno è composto da: " + vagoni + " Il peso complessivo è: " + pesoComplessivo() + " kg"
-        for (Vagone vagone : vagoni) {
-            s += vagone.toString() + "\n";
+    public String toString(JLabel label) {
+        for(Vagone vagone : vagoni) {
+            label.setText("<html>" + label.getText() + vagone.toString() + "<br></html>");
         }
-        return "Il treno è composto da: " + s.substring(1, s.length() - 1) + "\nIl peso complessivo è: " + pesoComplessivo() + " kg\n-----------------------------------\n";
+        return label.getText();
+    }
+
+    public int getNumeroVagoni() {
+        return vagoni.size();
     }
 }

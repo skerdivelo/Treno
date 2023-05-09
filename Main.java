@@ -7,11 +7,11 @@ public class Main {
     public static void main(String[] args) {
         Treno t = new Treno();
         JFrame frame = new JFrame("Treno");
-        try {
+        /* try {
             UIManager.setLookAndFeel("com.apple.laf.AquaLookAndFeel");
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
             e.printStackTrace();
-        }
+        } */
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 700);
         frame.setLocationRelativeTo(null);
@@ -43,6 +43,7 @@ public class Main {
         panel.add(button3);
         panel.add(button4);
         panel.add(button5);
+        //add error message if the user tries to print an empty train
         //add image Thomas.jpg to the same panel as the buttons
         ImageIcon image = new ImageIcon("image.png");
         JLabel imageLabel = new JLabel(image);
@@ -51,7 +52,7 @@ public class Main {
         panel.add(imageLabel);
 
         frame.add(panel, BorderLayout.CENTER);
-        JLabel label2 = new JLabel("Progetto realizzato da: Skerdi Velo, Kevin, Davide Rossini Treni S.p.A.");
+        JLabel label2 = new JLabel("Progetto realizzato da: Skerdi Velo, Kevin Tafa, Davide Rossini Treni S.p.A.");
         frame.add(label2, BorderLayout.SOUTH);       
         frame.setVisible(true);
         button1.addActionListener(new ActionListener() {
@@ -90,30 +91,37 @@ public class Main {
         button3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame2 = new JFrame("Treno");
-                //frame2 background color dark gray
-                frame2.getContentPane().setBackground(Color.DARK_GRAY);
-                //frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame2.setSize(500, 700);
-                frame2.setLocationRelativeTo(null);
-                frame2.setLayout(new BorderLayout());
-                JPanel panel2 = new JPanel();
-                panel2.setLayout(new FlowLayout());
-                JLabel label3 = new JLabel("Treno");
-                label3.setFont(new Font("Arial", Font.PLAIN, 30));
-                frame2.add(label3, BorderLayout.CENTER);
-                JLabel label4 = new JLabel();
-                label4.setFont(new Font("Arial", Font.PLAIN, 20));
-                label4.setText(t.toString());
-                label4.setPreferredSize(new Dimension(500, 700));
-                label4.setForeground(Color.WHITE);
-                //align the text north
-                label4.setVerticalAlignment(JLabel.NORTH);
-                frame2.add(label4, BorderLayout.CENTER);
-                label4.setText("<html>" + label4.getText() + "</html>");
-                JLabel label5 = new JLabel("Progetto realizzato da: Skerdi Velo, Kevin Tafa, Davide Rossini Treni S.p.A.");
-                frame2.add(label5, BorderLayout.SOUTH);
-                frame2.setVisible(true);
+                //check if the train is empty and display an alert
+                if (t.getNumeroVagoni() == 0) {
+                    JOptionPane.showMessageDialog(null, "Il treno è vuoto");
+                } else {
+                    JFrame frame2 = new JFrame("Treno");
+                    //frame2 background color dark gray
+                    frame2.getContentPane().setBackground(Color.DARK_GRAY);
+                    //frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    frame2.setSize(500, 700);
+                    frame2.setLocationRelativeTo(null);
+                    frame2.setLayout(new BorderLayout());
+                    JPanel panel2 = new JPanel();
+                    panel2.setLayout(new FlowLayout());
+                    JLabel label3 = new JLabel("Treno");
+                    label3.setFont(new Font("Arial", Font.PLAIN, 30));
+                    frame2.add(label3, BorderLayout.CENTER);
+                    JLabel label4 = new JLabel();
+                    label4.setFont(new Font("Arial", Font.PLAIN, 20));
+                    t.toString(label4);
+                    label4.setPreferredSize(new Dimension(500, 700));
+                    label4.setForeground(Color.WHITE);
+                    //align the text north
+                    label4.setVerticalAlignment(JLabel.NORTH);
+                    frame2.add(label4, BorderLayout.CENTER);
+                    // Check if the train is void and display an alert
+                    JLabel label5 = new JLabel("Progetto realizzato da: Skerdi Velo, Kevin Tafa, Davide Rossini Treni S.p.A.");
+                    //colore bianco label5
+                    label5.setForeground(Color.WHITE);
+                    frame2.add(label5, BorderLayout.SOUTH);
+                    frame2.setVisible(true);
+                }
             }
         });
         button4.addActionListener(new ActionListener() {

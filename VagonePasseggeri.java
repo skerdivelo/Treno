@@ -17,6 +17,8 @@ public class VagonePasseggeri extends Vagone {
         return pesoVuoto + pesoOccupanti;
     }
 
+    
+
     // Getters e setters
     public String getClasse() {
         return classe;
@@ -45,6 +47,6 @@ public class VagonePasseggeri extends Vagone {
     //toString
     @Override
     public String toString() {
-        return " VagonePasseggero: La classe è: " + classe + "\nI posti disponibili sono: " + postiDisponibili + "\nI posti occupati sono: " + postiOccupati + " \nIl codice=" + codice + "\nIl peso Vuoto=" + pesoVuoto + "\nL'azienda Costruttrice=" + aziendaCostruttrice + "\nL'anno di Costruzione=" + annoCostruzione+"\n-----------------------------------\n"; 
+        return " VagonePasseggero: La classe è: " + classe + "\nI posti disponibili sono: " + postiDisponibili + "\nI posti occupati sono: " + postiOccupati + " \nIl codice=" + codice + "\nIl peso Vuoto=" + pesoVuoto + "\nL'azienda Costruttrice=" + aziendaCostruttrice + "\nL'anno di Costruzione=" + annoCostruzione+"\n"; 
     }
 }
