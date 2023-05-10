@@ -2,6 +2,7 @@ public class VagonePasseggeri extends Vagone {
     private String classe;
     private int postiDisponibili;
     private int postiOccupati;
+    private static int contaVgoni = 0;
 
     public VagonePasseggeri(String codice, double pesoVuoto, String aziendaCostruttrice, int annoCostruzione,
                             String classe, int postiDisponibili, int postiOccupati) {
@@ -9,6 +10,7 @@ public class VagonePasseggeri extends Vagone {
         this.classe = classe;
         this.postiDisponibili = postiDisponibili;
         this.postiOccupati = postiOccupati;
+        contaVgoni++;
     }
 
     @Override
@@ -44,9 +46,14 @@ public class VagonePasseggeri extends Vagone {
         this.postiOccupati = postiOccupati;
     }
     
-    //toString
     @Override
     public String toString() {
-        return " VagonePasseggero: La classe è: " + classe + "\nI posti disponibili sono: " + postiDisponibili + "\nI posti occupati sono: " + postiOccupati + " \nIl codice=" + codice + "\nIl peso Vuoto=" + pesoVuoto + "\nL'azienda Costruttrice=" + aziendaCostruttrice + "\nL'anno di Costruzione=" + annoCostruzione+"\n"; 
+        return "<html>"+contaVgoni+")Codice: " + codice + "<br>" +
+            "Posti disponibili: " + postiDisponibili + "<br>" +
+            "Posti occupati: " + postiOccupati + "<br>" +
+            "Classe: " + classe + "<br>" +
+            "Peso vuoto: " + pesoVuoto + "<br>" +
+            "Azienda costruttrice: " + aziendaCostruttrice + "<br>" +
+            "Anno di costruzione: " + annoCostruzione + "<br>" + "</html>";
     }
 }

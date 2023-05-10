@@ -1,23 +1,38 @@
 import java.util.ArrayList;
-
-import javax.swing.JLabel;
+import java.util.Iterator;
 
 public class Treno {
-private ArrayList<Vagone> vagoni = new ArrayList<>();
+    private ArrayList<Vagone> vagoni = new ArrayList<>();
+    private int contatoreVagoniPasseggeri = 0;
+    private int contatoreVagoniMerci = 0;
 
-public void aggiungiVagone(Vagone vagone) {
-    vagoni.add(vagone);
-}
-
-//rimuovo il cagone dato il codice string
-public void rimuoviVagone(String codice) {
-    for (Vagone vagone : vagoni) {
-        if (vagone.getCodice().equals(codice)) {
-            vagoni.remove(vagone);
-            break;
+    public void aggiungiVagone(Vagone vagone) {
+        vagoni.add(vagone);
+        if (vagone instanceof VagonePasseggeri) {
+            contatoreVagoniPasseggeri++;
+        } else if (vagone instanceof VagoneMerci) {
+            contatoreVagoniMerci++;
         }
     }
-}
+
+    public Vagone rimuoviVagone(String codice) {
+        //the removed vagone is returned
+        Iterator<Vagone> iterator = vagoni.iterator();
+        while (iterator.hasNext()) {
+            Vagone vagone = iterator.next();
+            if (vagone.getCodice().equals(codice)) {
+                iterator.remove();
+                if (vagone instanceof VagonePasseggeri) {
+                    contatoreVagoniPasseggeri--;
+                } else if (vagone instanceof VagoneMerci) {
+                    contatoreVagoniMerci--;
+                }
+                return vagone;
+            }
+        }
+        return null;
+    }
+    
 
     public double pesoComplessivo() {
         double pesoTotale = 0;
@@ -29,12 +44,18 @@ public void rimuoviVagone(String codice) {
         return pesoTotale;
     }
 
+    public ArrayList<Vagone> getVagoni() {
+        return vagoni;
+    }
     //toString
-    public String toString(JLabel label) {
-        for(Vagone vagone : vagoni) {
-            label.setText("<html>" + label.getText() + vagone.toString() + "<br></html>");
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Vagone vagone : vagoni) {
+            sb.append(vagone.toString()).append("\n");
         }
-        return label.getText();
+        sb.append("Numero di vagoni Passeggeri: ").append(contatoreVagoniPasseggeri).append("\n");
+        sb.append("Numero di vagoni Merci: ").append(contatoreVagoniMerci).append("\n");
+        return sb.toString();
     }
 
     public int getNumeroVagoni() {
