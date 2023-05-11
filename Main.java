@@ -62,6 +62,10 @@ public class Main {
                 String classe = JOptionPane.showInputDialog("Inserisci classe");
                 int postiDisponibili = Integer.parseInt(JOptionPane.showInputDialog("Inserisci posti disponibili"));
                 int postiOccupati = Integer.parseInt(JOptionPane.showInputDialog("Inserisci posti occupati"));
+                while(postiOccupati > postiDisponibili){ //controlla se i posti occupati sono maggiori dei posti disponibili
+                    JOptionPane.showMessageDialog(null, "Posti occupati non possono essere maggiori dei posti disponibili", "Errore", JOptionPane.ERROR_MESSAGE);
+                    postiOccupati = Integer.parseInt(JOptionPane.showInputDialog("Inserisci posti occupati"));
+                }
                 Vagone v = new VagonePasseggeri(codice, pesoVuoto, aziendaCostruttrice, annoCostruzione, classe,
                         postiDisponibili, postiOccupati);
                 t.aggiungiVagone(v);

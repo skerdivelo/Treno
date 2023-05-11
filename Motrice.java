@@ -7,5 +7,4 @@ public class Motrice extends Vagone {
     public double pesoTotale() {
         return pesoVuoto;
     }
-
 }

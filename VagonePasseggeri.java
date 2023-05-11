@@ -44,7 +44,11 @@ public class VagonePasseggeri extends Vagone {
     }
 
     public void setPostiOccupati(int postiOccupati) {
-        this.postiOccupati = postiOccupati;
+        if (postiOccupati > postiDisponibili) {
+            System.out.println("Errore: posti occupati non possono essere maggiori dei posti disponibili");
+        } else {
+            this.postiOccupati = postiOccupati;
+        }
     }
     
     @Override

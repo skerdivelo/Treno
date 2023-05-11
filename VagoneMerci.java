@@ -44,7 +44,7 @@ public class VagoneMerci extends Vagone {
 
     @Override
     public String toString() {
-        return "<html>"+contaVagoni+"Codice: " + codice + "<br>" +
+        return "<html>"+contaVagoni+")Codice: " + codice + "<br>" +
             "Peso vuoto: " + pesoVuoto + "<br>" +
             "Azienda costruttrice: " + aziendaCostruttrice + "<br>" +
             "Anno di costruzione: " + annoCostruzione + "<br>" +
