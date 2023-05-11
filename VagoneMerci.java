@@ -6,7 +6,7 @@ public class VagoneMerci extends Vagone {
 
     public VagoneMerci(String codice, double pesoVuoto, String aziendaCostruttrice, int annoCostruzione,
         double volumeCarico, double pesoMaxCarico, double pesoEffettivoCarico) {
-        super(codice, pesoVuoto, aziendaCostruttrice, annoCostruzione);
+        super(codice, pesoVuoto, aziendaCostruttrice, annoCostruzione); // chiama il costruttore della superclasse Vagone
         this.volumeCarico = volumeCarico;
         this.pesoMaxCarico = pesoMaxCarico;
         this.pesoEffettivoCarico = pesoEffettivoCarico;

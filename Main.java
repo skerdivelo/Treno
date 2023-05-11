@@ -7,12 +7,13 @@ public class Main {
     public static void main(String[] args) {
         Treno t = new Treno();
         JFrame frame = new JFrame("Treno");
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 700);
         frame.setLocationRelativeTo(null);
-        frame.setLayout(new BorderLayout());
+        frame.setLayout(new BorderLayout()); //imposta il layout del frame come BorderLayout (NORTH, SOUTH, EAST, WEST, CENTER)
         JPanel panel = new JPanel();
-        panel.setLayout(new FlowLayout());
+        panel.setLayout(new FlowLayout()); //imposta il layout del pannello come FlowLayout (da sinistra a destra)
         JLabel label = new JLabel("Benvenuto nella gestione dei treni");
         label.setForeground(Color.WHITE);
         label.setFont(new Font("Arial", Font.PLAIN, 30));
@@ -89,54 +90,51 @@ public class Main {
         button3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //check if the train is empty and display an alert
-                if (t.getNumeroVagoni() == 0) {
+                if (t.getNumeroVagoni() == 0) { //controlla se il treno è vuoto
                     JOptionPane.showMessageDialog(null, "Il treno è vuoto");
                 } else {
                     JFrame frame2 = new JFrame("Treno");
-                    frame2.getContentPane().setBackground(Color.DARK_GRAY);
-                    frame2.setSize(500, 700);
-                    frame2.setLocationRelativeTo(null);
-                    frame2.setLayout(new BorderLayout());
-                    JLabel label3 = new JLabel("Treno");
-                    label3.setForeground(Color.WHITE);
-                    //align label3 to the center
-                    label3.setHorizontalAlignment(JLabel.CENTER);
-                    label3.setFont(new Font("Arial", Font.PLAIN, 30));
-                    frame2.add(label3, BorderLayout.NORTH);
-                    JPanel panelPasseggeri = new JPanel();
-                    panelPasseggeri.setLayout(new BoxLayout(panelPasseggeri, BoxLayout.Y_AXIS));
-                    panelPasseggeri.setBackground(Color.WHITE);
+                    frame2.setResizable(false); //imposta la dimensione fissa
+                    frame2.getContentPane().setBackground(Color.DARK_GRAY); //imposta il colore di sfondo
+                    frame2.setSize(500, 700); //imposta la dimensione del frame
+                    frame2.setLocationRelativeTo(null); //centra il frame
+                    frame2.setLayout(new BorderLayout()); //imposta il layout
+                    JLabel label3 = new JLabel("Treno"); //crea un nuovo label
+                    label3.setForeground(Color.WHITE); //cambia il colore del testo
+                    label3.setHorizontalAlignment(JLabel.CENTER); //centra il testo
+                    label3.setFont(new Font("Arial", Font.PLAIN, 30)); //cammbia il font
+                    frame2.add(label3, BorderLayout.NORTH); //aggiunge il label al frame
+                    JPanel panelPasseggeri = new JPanel(); //crea un nuovo pannello
+                    panelPasseggeri.setLayout(new BoxLayout(panelPasseggeri, BoxLayout.Y_AXIS)); //imposta il layout
+                    panelPasseggeri.setBackground(Color.WHITE); //imposta il colore di sfondo
                     panelPasseggeri.setAlignmentX(Component.CENTER_ALIGNMENT); //centra il testo
-                    JPanel panelMerci = new JPanel();
-                    panelMerci.setLayout(new BoxLayout(panelMerci, BoxLayout.Y_AXIS));
-                    panelMerci.setBackground(Color.WHITE);
-                    for (Vagone vagone : t.getVagoni()) {
-                        if (vagone instanceof VagonePasseggeri) {
-                            JLabel label = new JLabel(vagone.toString());
-                            label.setFont(new Font("Arial", Font.PLAIN, 20));
-                            panelPasseggeri.add(label);
-                            //align label to the center
-                            label.setHorizontalAlignment(JLabel.CENTER);
+                    JPanel panelMerci = new JPanel(); //crea un nuovo pannello
+                    panelMerci.setLayout(new BoxLayout(panelMerci, BoxLayout.Y_AXIS)); //imposta il layout
+                    panelMerci.setBackground(Color.WHITE); //imposta il colore di sfondo
+                    for (Vagone vagone : t.getVagoni()) { //per ogni vagone nel treno
+                        if (vagone instanceof VagonePasseggeri) { //se il vagone è un vagone passeggeri
+                            JLabel label = new JLabel(vagone.toString()); //crea un testo con il toString del vagone
+                            label.setFont(new Font("Arial", Font.PLAIN, 20)); //imposta il font
+                            panelPasseggeri.add(label); //aggiunge il testo al pannello
+                            label.setHorizontalAlignment(JLabel.CENTER); //centra il testo
                             panelPasseggeri.add(Box.createVerticalStrut(10)); //aggiunge una riga di spazio di 10 pixel
-                        } else if (vagone instanceof VagoneMerci) {
-                            JLabel label = new JLabel(vagone.toString());
-                            label.setFont(new Font("Arial", Font.PLAIN, 20));
-                            panelMerci.add(label);
-                            //align label to the center
-                            label.setHorizontalAlignment(JLabel.CENTER);
+                        } else if (vagone instanceof VagoneMerci) { //se il vagone è un vagone merci
+                            JLabel label = new JLabel(vagone.toString()); //crea un testo con il toString del vagone
+                            label.setFont(new Font("Arial", Font.PLAIN, 20)); //imposta il font
+                            panelMerci.add(label);  //aggiunge il testo al pannello
+                            label.setHorizontalAlignment(JLabel.CENTER); //centra il testo
                             panelMerci.add(Box.createVerticalStrut(10)); //aggiunge una riga di spazio di 10 pixel
                         }
                     }
 
-                    JScrollPane scrollPanePasseggeri = new JScrollPane(panelPasseggeri);
-                    scrollPanePasseggeri.setPreferredSize(new Dimension(500, 350));
-                    JScrollPane scrollPaneMerci = new JScrollPane(panelMerci);
-                    scrollPaneMerci.setPreferredSize(new Dimension(500, 350));
-                    JTabbedPane tabbedPane = new JTabbedPane();
-                    tabbedPane.addTab("Vagoni Passeggeri", scrollPanePasseggeri);
-                    tabbedPane.addTab("Vagoni Merci", scrollPaneMerci);
-                    frame2.add(tabbedPane, BorderLayout.CENTER);
+                    JScrollPane scrollPanePasseggeri = new JScrollPane(panelPasseggeri); //aggiunge la barra di scorrimento
+                    scrollPanePasseggeri.setPreferredSize(new Dimension(500, 350)); //dimensione della barra di scorrimento
+                    JScrollPane scrollPaneMerci = new JScrollPane(panelMerci); //aggiunge la barra di scorrimento
+                    scrollPaneMerci.setPreferredSize(new Dimension(500, 350)); //dimensione della barra di scorrimento
+                    JTabbedPane tabbedPane = new JTabbedPane(); //crea una scheda per ogni tipo di vagone (passeggeri e merci)
+                    tabbedPane.addTab("Vagoni Passeggeri", scrollPanePasseggeri); //aggiunge la barra di scorrimento alla scheda
+                    tabbedPane.addTab("Vagoni Merci", scrollPaneMerci); //aggiunge la barra di scorrimento alla scheda
+                    frame2.add(tabbedPane, BorderLayout.CENTER); //aggiunge la scheda al frame
                     JLabel label5 = new JLabel("Progetto realizzato da: Skerdi Velo, Kevin Tafa, Davide Rossini Treni S.p.A.");
                     label5.setForeground(Color.WHITE);
                     frame2.add(label5, BorderLayout.SOUTH);
@@ -168,7 +166,23 @@ public class Main {
         button5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                //print a message dialog saying "Grazie per aver utilizzato il nostro programma" and add a timer of 5 seconds to close the program. Then add image quaglia.jpg and make it smaller
+                JOptionPane.showMessageDialog(null, "Grazie per aver utilizzato il nostro programma");
+                Timer timer = new Timer(3000, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        System.exit(0);
+                    }
+                });
+                timer.start();
+                JFrame frame2 = new JFrame("Quaglia");
+                frame2.setResizable(false);
+                frame2.setSize(500, 500);
+                frame2.setLocationRelativeTo(null);
+                frame2.setLayout(new BorderLayout());
+                JLabel label = new JLabel(new ImageIcon("quaglia.jpg"));
+                frame2.add(label, BorderLayout.CENTER);
+                frame2.setVisible(true);
             }
         });
         frame.setVisible(true);

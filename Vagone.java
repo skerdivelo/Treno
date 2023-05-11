@@ -46,4 +46,5 @@ public abstract class Vagone {
     public void setAnnoCostruzione(int annoCostruzione) {
         this.annoCostruzione = annoCostruzione;
     }
+    
 }

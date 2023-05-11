@@ -1,4 +1,5 @@
 public class Motrice extends Vagone {
+
     public Motrice(String codice, double pesoVuoto, String aziendaCostruttrice, int annoCostruzione) {
         super(codice, pesoVuoto, aziendaCostruttrice, annoCostruzione);
     }
@@ -6,4 +7,5 @@ public class Motrice extends Vagone {
     public double pesoTotale() {
         return pesoVuoto;
     }
+
 }

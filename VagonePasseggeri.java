@@ -2,11 +2,12 @@ public class VagonePasseggeri extends Vagone {
     private String classe;
     private int postiDisponibili;
     private int postiOccupati;
+    private static int PESO_MEDIO_PASSEGGERO = 65;
     private static int contaVgoni = 0;
 
     public VagonePasseggeri(String codice, double pesoVuoto, String aziendaCostruttrice, int annoCostruzione,
-                            String classe, int postiDisponibili, int postiOccupati) {
-        super(codice, pesoVuoto, aziendaCostruttrice, annoCostruzione);
+        String classe, int postiDisponibili, int postiOccupati) {
+        super(codice, pesoVuoto, aziendaCostruttrice, annoCostruzione); // chiama il costruttore della superclasse Vagone
         this.classe = classe;
         this.postiDisponibili = postiDisponibili;
         this.postiOccupati = postiOccupati;
@@ -15,7 +16,7 @@ public class VagonePasseggeri extends Vagone {
 
     @Override
     public double pesoTotale() {
-        double pesoOccupanti = postiOccupati * 65.0;
+        double pesoOccupanti = postiOccupati * PESO_MEDIO_PASSEGGERO;
         return pesoVuoto + pesoOccupanti;
     }
 
