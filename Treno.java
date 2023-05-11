@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Treno {
     private ArrayList<Vagone> vagoni = new ArrayList<>();
@@ -74,12 +76,21 @@ public class Treno {
         return false; // se non trova nulla restituisce false
     }
 
-    public String getVagone(String codice) {
+    public String getVagone() {
+        String s = "";
         for (Vagone vagone : vagoni) { // scorre tutti i vagoni
-            if (vagone.getCodice().equals(codice)) { // se trova un vagone con lo stesso codice
-                return "Il peso complessivo del vagone (senza motrice) "+codice+" è "+pesoComplessivo(); // restituisce il peso complessivo del vagone   
-            }
+            return "Il peso complessivo dei vagoni è: "+pesoComplessivo(); // aggiunge la stringa del vagone alla stringa da restituire
         }
-        return null; // se non trova nulla restituisce null
+        return s; // restituisce la stringa
+    }
+
+    public void ordinaCodice() {
+        //sort by codice VagonePasseggeri and VagoneMerci
+        Collections.sort(vagoni, new Comparator<Vagone>() {
+            @Override
+            public int compare(Vagone o1, Vagone o2) {
+                return o1.getCodice().compareTo(o2.getCodice());
+            }
+        });
     }
 }

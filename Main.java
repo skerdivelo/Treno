@@ -29,7 +29,8 @@ public class Main {
         JButton button3 = new JButton("Stampa Treno");
         JButton button4 = new JButton("Rimuovi Vagone");
         JButton button5 = new JButton("Peso Complessivo");
-        JButton button6 = new JButton("Esci");
+        JButton button6 = new JButton("Ordina Vagoni");
+        JButton button7 = new JButton("Esci");
         button1.setPreferredSize(new Dimension(200, 50));
         button2.setPreferredSize(new Dimension(200, 50));
         button3.setPreferredSize(new Dimension(200, 50));
@@ -38,12 +39,14 @@ public class Main {
         button4.setFont(new Font("Arial", Font.BOLD, 15));
         button5.setPreferredSize(new Dimension(200, 50));
         button6.setPreferredSize(new Dimension(200, 50));
+        button7.setPreferredSize(new Dimension(200, 50));
         panel.add(button1);
         panel.add(button2);
         panel.add(button3);
         panel.add(button4);
         panel.add(button5);
         panel.add(button6);
+        panel.add(button7);
         ImageIcon image = new ImageIcon("image.png");
         JLabel imageLabel = new JLabel(image);
         
@@ -221,11 +224,7 @@ public class Main {
                     if(t.getNumeroVagoni() == 0){
                         JOptionPane.showMessageDialog(null, "Il treno è vuoto");
                     }else{
-                        String codice = JOptionPane.showInputDialog("Inserisci codice");
-                        if(codice == null || codice.trim().equals("")){
-                            return;
-                        }
-                        String v = t.getVagone(codice);
+                        String v = t.getVagone();
                         if(v == null){
                             JOptionPane.showMessageDialog(null, "Vagone non trovato");
                         }else{
@@ -238,7 +237,20 @@ public class Main {
             }
         });
 
+        //ordina in base al codice dal minore al maggiore
         button6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(t.getNumeroVagoni() == 0){
+                    JOptionPane.showMessageDialog(null, "Il treno è vuoto");
+                }else{
+                    t.ordinaCodice();
+                    JOptionPane.showMessageDialog(null, "Ordinato");
+                }
+            }
+        });
+
+        button7.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //print a message dialog saying "Grazie per aver utilizzato il nostro programma" and add a timer of 5 seconds to close the program. Then add image quaglia.jpg and make it smaller
