@@ -52,7 +52,8 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String codice = JOptionPane.showInputDialog("Inserisci codice");
-                if (codice == null || codice.equals("")) {
+                if (codice == null || codice.trim().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Codice non valido", "Errore", JOptionPane.ERROR_MESSAGE);
                     return; // interrompe l'esecuzione del metodo se l'utente ha cliccato su "Cancel" o ha lasciato il campo vuoto
                 }
                 double pesoVuoto = Double.parseDouble(JOptionPane.showInputDialog("Inserisci peso vuoto"));
@@ -72,7 +73,8 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String codice = JOptionPane.showInputDialog("Inserisci codice");
-                if(codice == null || codice.equals("")){ //controlla se l'utente ha cliccato su "Cancel" o ha lasciato il campo vuoto
+                if(codice == null || codice.trim().equals("")){ //controlla se l'utente ha cliccato su "Cancel" o ha lasciato il campo vuoto
+                    JOptionPane.showMessageDialog(null, "Codice non valido", "Errore", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 double pesoVuoto = Double.parseDouble(JOptionPane.showInputDialog("Inserisci peso vuoto"));
