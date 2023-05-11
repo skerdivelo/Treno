@@ -132,7 +132,7 @@ public class Main {
                             panelMerci.add(Box.createVerticalStrut(10)); //aggiunge una riga di spazio di 10 pixel
                         }
                     }
-
+        
                     JScrollPane scrollPanePasseggeri = new JScrollPane(panelPasseggeri); //aggiunge la barra di scorrimento
                     scrollPanePasseggeri.setPreferredSize(new Dimension(500, 350)); //dimensione della barra di scorrimento
                     JScrollPane scrollPaneMerci = new JScrollPane(panelMerci); //aggiunge la barra di scorrimento
@@ -140,7 +140,25 @@ public class Main {
                     JTabbedPane tabbedPane = new JTabbedPane(); //crea una scheda per ogni tipo di vagone (passeggeri e merci)
                     tabbedPane.addTab("Vagoni Passeggeri", scrollPanePasseggeri); //aggiunge la barra di scorrimento alla scheda
                     tabbedPane.addTab("Vagoni Merci", scrollPaneMerci); //aggiunge la barra di scorrimento alla scheda
-                    frame2.add(tabbedPane, BorderLayout.CENTER); //aggiunge la scheda al frame
+                    
+                    JButton closeButton = new JButton("Chiudi");
+                    closeButton.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            // Chiude la finestra corrente
+                            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(closeButton);
+                            frame.dispose();
+                        }
+                    });
+                    
+                    JPanel panel = new JPanel();
+                    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+                    panel.add(tabbedPane);
+                    panel.add(Box.createVerticalStrut(10));
+                    panel.add(closeButton);
+                    panel.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    
+                    frame2.add(panel, BorderLayout.CENTER); //aggiunge la scheda al frame
                     JLabel label5 = new JLabel("Progetto realizzato da: Skerdi Velo, Kevin Tafa, Davide Rossini Treni S.p.A.");
                     label5.setForeground(Color.WHITE);
                     frame2.add(label5, BorderLayout.SOUTH);
@@ -148,6 +166,7 @@ public class Main {
                 }
             }
         });
+        
         
         
         button4.addActionListener(new ActionListener() {
