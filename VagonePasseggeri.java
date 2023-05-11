@@ -3,7 +3,6 @@ public class VagonePasseggeri extends Vagone {
     private int postiDisponibili;
     private int postiOccupati;
     private static int PESO_MEDIO_PASSEGGERO = 65;
-    private static int contaVgoni = 0;
 
     public VagonePasseggeri(String codice, double pesoVuoto, String aziendaCostruttrice, int annoCostruzione,
         String classe, int postiDisponibili, int postiOccupati) {
@@ -11,7 +10,6 @@ public class VagonePasseggeri extends Vagone {
         this.classe = classe;
         this.postiDisponibili = postiDisponibili;
         this.postiOccupati = postiOccupati;
-        contaVgoni++;
     }
 
     @Override
@@ -19,8 +17,6 @@ public class VagonePasseggeri extends Vagone {
         double pesoOccupanti = postiOccupati * PESO_MEDIO_PASSEGGERO;
         return pesoVuoto + pesoOccupanti;
     }
-
-    
 
     // Getters e setters
     public String getClasse() {
@@ -53,7 +49,7 @@ public class VagonePasseggeri extends Vagone {
     
     @Override
     public String toString() {
-        return "<html>"+contaVgoni+")Codice: " + codice + "<br>" +
+        return "<html>Codice: " + codice + "<br>" +
             "Posti disponibili: " + postiDisponibili + "<br>" +
             "Posti occupati: " + postiOccupati + "<br>" +
             "Classe: " + classe + "<br>" +
@@ -61,4 +57,5 @@ public class VagonePasseggeri extends Vagone {
             "Azienda costruttrice: " + aziendaCostruttrice + "<br>" +
             "Anno di costruzione: " + annoCostruzione + "<br>" + "</html>";
     }
+    
 }

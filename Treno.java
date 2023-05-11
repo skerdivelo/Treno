@@ -6,6 +6,7 @@ public class Treno {
     private int contatoreVagoniPasseggeri = 0;
     private int contatoreVagoniMerci = 0;
 
+
     public void aggiungiVagone(Vagone vagone) {
         vagoni.add(vagone);
         if (vagone instanceof VagonePasseggeri) {
@@ -41,8 +42,10 @@ public class Treno {
                 pesoTotale += vagone.pesoTotale(); // aggiunge il peso del vagone al peso totale
             } // altrimenti non fa nulla
         } 
-        return pesoTotale; 
+        return pesoTotale;
     }
+
+    //la classe dovrà prevedere un metodo che restituisca il peso complessivo del treno esclusa/e la/e motrice/i.
 
     public ArrayList<Vagone> getVagoni() {
         return vagoni; // restituisce la lista dei vagoni
@@ -60,5 +63,23 @@ public class Treno {
 
     public int getNumeroVagoni() { 
         return vagoni.size();
+    }
+
+    public boolean verificaCodice(String codice) {
+        for (Vagone vagone : vagoni) { // scorre tutti i vagoni
+            if (vagone.getCodice().equals(codice)) { // se trova un vagone con lo stesso codice
+                return true; // restituisce true
+            }
+        }
+        return false; // se non trova nulla restituisce false
+    }
+
+    public String getVagone(String codice) {
+        for (Vagone vagone : vagoni) { // scorre tutti i vagoni
+            if (vagone.getCodice().equals(codice)) { // se trova un vagone con lo stesso codice
+                return "Il peso complessivo del vagone (senza motrice) "+codice+" è "+pesoComplessivo(); // restituisce il peso complessivo del vagone   
+            }
+        }
+        return null; // se non trova nulla restituisce null
     }
 }

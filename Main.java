@@ -28,17 +28,22 @@ public class Main {
         JButton button2 = new JButton("Vagone Merci");
         JButton button3 = new JButton("Stampa Treno");
         JButton button4 = new JButton("Rimuovi Vagone");
-        JButton button5 = new JButton("Esci");
+        JButton button5 = new JButton("Peso Complessivo");
+        JButton button6 = new JButton("Esci");
         button1.setPreferredSize(new Dimension(200, 50));
         button2.setPreferredSize(new Dimension(200, 50));
         button3.setPreferredSize(new Dimension(200, 50));
         button4.setPreferredSize(new Dimension(200, 50));
+        button4.setForeground(Color.RED);
+        button4.setFont(new Font("Arial", Font.BOLD, 15));
         button5.setPreferredSize(new Dimension(200, 50));
+        button6.setPreferredSize(new Dimension(200, 50));
         panel.add(button1);
         panel.add(button2);
         panel.add(button3);
         panel.add(button4);
         panel.add(button5);
+        panel.add(button6);
         ImageIcon image = new ImageIcon("image.png");
         JLabel imageLabel = new JLabel(image);
         
@@ -52,23 +57,33 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String codice = JOptionPane.showInputDialog("Inserisci codice");
-                if (codice == null || codice.trim().equals("")) {
+                if (codice == null || codice.trim().equals("" )) {
                     JOptionPane.showMessageDialog(null, "Codice non valido", "Errore", JOptionPane.ERROR_MESSAGE);
                     return; // interrompe l'esecuzione del metodo se l'utente ha cliccato su "Cancel" o ha lasciato il campo vuoto
                 }
-                double pesoVuoto = Double.parseDouble(JOptionPane.showInputDialog("Inserisci peso vuoto"));
-                String aziendaCostruttrice = JOptionPane.showInputDialog("Inserisci azienda costruttrice");
-                int annoCostruzione = Integer.parseInt(JOptionPane.showInputDialog("Inserisci anno costruzione"));
-                String classe = JOptionPane.showInputDialog("Inserisci classe");
-                int postiDisponibili = Integer.parseInt(JOptionPane.showInputDialog("Inserisci posti disponibili"));
-                int postiOccupati = Integer.parseInt(JOptionPane.showInputDialog("Inserisci posti occupati"));
-                while(postiOccupati > postiDisponibili){ //controlla se i posti occupati sono maggiori dei posti disponibili
-                    JOptionPane.showMessageDialog(null, "Posti occupati non possono essere maggiori dei posti disponibili", "Errore", JOptionPane.ERROR_MESSAGE);
-                    postiOccupati = Integer.parseInt(JOptionPane.showInputDialog("Inserisci posti occupati"));
+                while (t.verificaCodice(codice)) { //controlla se il codice inserito è già presente
+                    JOptionPane.showMessageDialog(null, "Codice già presente", "Errore", JOptionPane.ERROR_MESSAGE);
+                    codice = JOptionPane.showInputDialog("Inserisci codice");
                 }
-                Vagone v = new VagonePasseggeri(codice, pesoVuoto, aziendaCostruttrice, annoCostruzione, classe,
-                        postiDisponibili, postiOccupati);
-                t.aggiungiVagone(v);
+                try {
+                    double pesoVuoto = Double.parseDouble(JOptionPane.showInputDialog("Inserisci peso vuoto"));
+                    String aziendaCostruttrice = JOptionPane.showInputDialog("Inserisci azienda costruttrice");
+                    int annoCostruzione = Integer.parseInt(JOptionPane.showInputDialog("Inserisci anno costruzione"));
+                    String classe = JOptionPane.showInputDialog("Inserisci classe");
+                    int postiDisponibili = Integer.parseInt(JOptionPane.showInputDialog("Inserisci posti disponibili"));
+                    int postiOccupati = Integer.parseInt(JOptionPane.showInputDialog("Inserisci posti occupati"));
+                
+                    while(postiOccupati > postiDisponibili){ //controlla se i posti occupati sono maggiori dei posti disponibili
+                        JOptionPane.showMessageDialog(null, "Posti occupati non possono essere maggiori dei posti disponibili", "Errore", JOptionPane.ERROR_MESSAGE);
+                        postiOccupati = Integer.parseInt(JOptionPane.showInputDialog("Inserisci posti occupati"));
+                    }
+                    Vagone v = new VagonePasseggeri(codice, pesoVuoto, aziendaCostruttrice, annoCostruzione, classe,
+                            postiDisponibili, postiOccupati);
+                    t.aggiungiVagone(v);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Errore", "Errore", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
             }
         });
         
@@ -81,15 +96,25 @@ public class Main {
                     JOptionPane.showMessageDialog(null, "Codice non valido", "Errore", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                double pesoVuoto = Double.parseDouble(JOptionPane.showInputDialog("Inserisci peso vuoto"));
-                String aziendaCostruttrice = JOptionPane.showInputDialog("Inserisci azienda costruttrice");
-                int annoCostruzione = Integer.parseInt(JOptionPane.showInputDialog("Inserisci anno costruzione"));
-                int lunghezza = Integer.parseInt(JOptionPane.showInputDialog("Inserisci lunghezza"));
-                int numeroAssi = Integer.parseInt(JOptionPane.showInputDialog("Inserisci numero assi"));
-                int numeroContainer = Integer.parseInt(JOptionPane.showInputDialog("Inserisci numero container"));
-                Vagone v2 = new VagoneMerci(codice, pesoVuoto, aziendaCostruttrice, annoCostruzione, lunghezza,
-                        numeroAssi, numeroContainer);
-                t.aggiungiVagone(v2);
+                try{
+                    //ciclo while per controllare se il codice inserito è già presente
+                    while(t.verificaCodice(codice)){
+                        JOptionPane.showMessageDialog(null, "Codice già presente", "Errore", JOptionPane.ERROR_MESSAGE);
+                        codice = JOptionPane.showInputDialog("Inserisci codice");
+                    }
+                    double pesoVuoto = Double.parseDouble(JOptionPane.showInputDialog("Inserisci peso vuoto"));
+                    String aziendaCostruttrice = JOptionPane.showInputDialog("Inserisci azienda costruttrice");
+                    int annoCostruzione = Integer.parseInt(JOptionPane.showInputDialog("Inserisci anno costruzione"));
+                    int lunghezza = Integer.parseInt(JOptionPane.showInputDialog("Inserisci lunghezza"));
+                    int numeroAssi = Integer.parseInt(JOptionPane.showInputDialog("Inserisci numero assi"));
+                    int numeroContainer = Integer.parseInt(JOptionPane.showInputDialog("Inserisci numero container"));
+                    Vagone v2 = new VagoneMerci(codice, pesoVuoto, aziendaCostruttrice, annoCostruzione, lunghezza,
+                            numeroAssi, numeroContainer);
+                    t.aggiungiVagone(v2);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Errore", "Errore", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
             }
         });
 
@@ -188,7 +213,32 @@ public class Main {
                 }
             }
         });
+
         button5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                    if(t.getNumeroVagoni() == 0){
+                        JOptionPane.showMessageDialog(null, "Il treno è vuoto");
+                    }else{
+                        String codice = JOptionPane.showInputDialog("Inserisci codice");
+                        if(codice == null || codice.trim().equals("")){
+                            return;
+                        }
+                        String v = t.getVagone(codice);
+                        if(v == null){
+                            JOptionPane.showMessageDialog(null, "Vagone non trovato");
+                        }else{
+                            JOptionPane.showMessageDialog(null, v);
+                        }
+                    }
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Errore");
+                }
+            }
+        });
+
+        button6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //print a message dialog saying "Grazie per aver utilizzato il nostro programma" and add a timer of 5 seconds to close the program. Then add image quaglia.jpg and make it smaller
