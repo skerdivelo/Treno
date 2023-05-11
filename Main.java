@@ -52,8 +52,8 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String codice = JOptionPane.showInputDialog("Inserisci codice");
-                if (codice == null) {
-                    return; // interrompe l'esecuzione del metodo se l'utente ha cliccato su "Cancel"
+                if (codice == null || codice.equals("")) {
+                    return; // interrompe l'esecuzione del metodo se l'utente ha cliccato su "Cancel" o ha lasciato il campo vuoto
                 }
                 double pesoVuoto = Double.parseDouble(JOptionPane.showInputDialog("Inserisci peso vuoto"));
                 String aziendaCostruttrice = JOptionPane.showInputDialog("Inserisci azienda costruttrice");
@@ -72,7 +72,7 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String codice = JOptionPane.showInputDialog("Inserisci codice");
-                if(codice == null){
+                if(codice == null || codice.equals("")){ //controlla se l'utente ha cliccato su "Cancel" o ha lasciato il campo vuoto
                     return;
                 }
                 double pesoVuoto = Double.parseDouble(JOptionPane.showInputDialog("Inserisci peso vuoto"));
